@@ -58,3 +58,8 @@ External Console Menu for Grand Theft Auto V 1.52
 * Max Tune Car
 * Spawn Money
 * LSC Sell Method
+
+
+# GTA:SA
+<img src="https://github.com/ZeroCooL-555/Game-Hacks/blob/master/Screenshots/GTASA.PNG" width="800" height="450">
+A simple external hack that i made while i was learning basic game hacking concepts.

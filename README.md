@@ -1,10 +1,10 @@
 # Assault Cube
-<img src="https://github.com/ZeroCooL-555/Game-Hacks/blob/master/Screenshots/AC_ESP.PNG" width="650" height="450">
+![AssaultCube](https://github.com/ZeroCooL-555/Game-Hacks/blob/master/Screenshots/AC_ESP.PNG)
 Basic 2D Box ESP and Snaplines for Assault Cube
 
 
 # Call of Duty: Black Ops 2
-<img src="https://github.com/ZeroCooL-555/Game-Hacks/blob/master/Screenshots/BO2-Menu.PNG" width="650" height="450">
+![BO2](https://github.com/ZeroCooL-555/Game-Hacks/blob/master/Screenshots/BO2-Menu.PNG)
 Custom games only hack. Includes a ingame GDI menu
 
 ### Features
@@ -17,7 +17,7 @@ Custom games only hack. Includes a ingame GDI menu
 
 # CS:GO
 ### GDI Hack
-<img src="https://github.com/ZeroCooL-555/Game-Hacks/blob/master/Screenshots/CSGO_GDI.PNG" width="650" height="450">
+![CSGO GDI](https://github.com/ZeroCooL-555/Game-Hacks/blob/master/Screenshots/CSGO_GDI.PNG)
 The ingame GDI menu flickers a lot. To minimize the flickering enable <b>Laptop Power Savings</b> in <b>Settings -> Video -> Laptop Power Savings: ENABLED</b>
 
 
@@ -30,7 +30,7 @@ The ingame GDI menu flickers a lot. To minimize the flickering enable <b>Laptop 
 * Triggerbot
 
 ### DirectX Hack
-<img src="https://github.com/ZeroCooL-555/Game-Hacks/blob/master/Screenshots/CSGO_D3D.PNG" width="650" height="450">
+![CSGO D3D](https://github.com/ZeroCooL-555/Game-Hacks/blob/master/Screenshots/CSGO_D3D.PNG)
 Simple ESP, Crosshair and Snaplines. Flicker free ESP created with DirectX
 
 ### Features
@@ -41,7 +41,7 @@ Simple ESP, Crosshair and Snaplines. Flicker free ESP created with DirectX
 
 # GTA 5
 ### GoldenJackpot
-<img src="https://github.com/ZeroCooL-555/Game-Hacks/blob/master/Screenshots/GoldenJackpot.PNG" width="800" height="450">
+![GTA5](https://github.com/ZeroCooL-555/Game-Hacks/blob/master/Screenshots/GoldenJackpot.PNG)
 External Console Menu for Grand Theft Auto V 1.52
 
 ### Features
@@ -61,5 +61,5 @@ External Console Menu for Grand Theft Auto V 1.52
 
 
 # GTA:SA
-<img src="https://github.com/ZeroCooL-555/Game-Hacks/blob/master/Screenshots/GTASA.PNG" width="800" height="450">
+![GTASA](https://github.com/ZeroCooL-555/Game-Hacks/blob/master/Screenshots/GTASA.PNG)
 A simple external hack that i made while i was learning basic game hacking concepts.

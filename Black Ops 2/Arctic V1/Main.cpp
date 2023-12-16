@@ -103,7 +103,6 @@ void DrawESP()
 							float HealthBar = BoxHeight / 100 * Enemies[i].EntityHealth;
 
 							// Health Bar
-							//DrawFilledRect(vScreen.x - center - 1, vScreen.y, -3, BoxHeight, 255, 0, 0);
 							DrawFilledRect(vScreen.x - center - 1, vScreen.y, -3, HealthBar, 0, 255, 0);
 						}
 					}
@@ -144,7 +143,7 @@ void DrawESP()
 
 int main()
 {
-	SetConsoleTitle(L"Artic - ZeroCoo1");
+	SetConsoleTitle(L"Arctic");
 	Gamewindow = FindWindow(0, L"Call of Duty®: Black Ops II - Multiplayer");
 
 	if (Gamewindow == NULL)

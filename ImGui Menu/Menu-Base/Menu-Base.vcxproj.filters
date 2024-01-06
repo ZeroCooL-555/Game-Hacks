@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\imgui">
+      <UniqueIdentifier>{3b96d96c-5031-4c6b-b2a2-15599a835f35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menu">
+      <UniqueIdentifier>{debd8972-be76-4949-98c1-7d759b89cdd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Methods">
+      <UniqueIdentifier>{2331be59-356e-4f4e-ab1f-6c72abb8e7b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Methods">
+      <UniqueIdentifier>{e6515e3b-9d84-4556-901b-ebfcecefa798}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Logging">
+      <UniqueIdentifier>{02d20a24-7fb6-4c8f-9e86-35dffc9fe3f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Logging">
+      <UniqueIdentifier>{4f01bc0f-7631-4383-b155-384286ecf011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Overlay">
+      <UniqueIdentifier>{ea8c78c3-8518-4bb9-801e-296d751f8a88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Overlay">
+      <UniqueIdentifier>{3a33ca01-1fa3-45a2-a933-4048f57e3f36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\resources">
+      <UniqueIdentifier>{cec3652b-7853-4697-9c18-c78f5df7f9f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\resources\Cursors">
+      <UniqueIdentifier>{431d8da1-f350-4a57-b5bf-d3bb8654f853}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\resources\Fonts">
+      <UniqueIdentifier>{3de4fb33-9923-4fed-809e-5ceb10e64d51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\resources\icons">
+      <UniqueIdentifier>{5fd6a808-0704-4871-9705-9308a385689e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\resources\images">
+      <UniqueIdentifier>{0c01ec84-c25d-4ca5-aead-cc1db53f9f2a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="include\imgui\imgui.cpp">
+      <Filter>Header Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="include\imgui\imgui_draw.cpp">
+      <Filter>Header Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="include\imgui\imgui_impl_glfw.cpp">
+      <Filter>Header Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="include\imgui\imgui_impl_opengl3.cpp">
+      <Filter>Header Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="include\imgui\imgui_tables.cpp">
+      <Filter>Header Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="include\imgui\imgui_widgets.cpp">
+      <Filter>Header Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logging\logging.cpp">
+      <Filter>Source Files\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Methods\CreateImage.cpp">
+      <Filter>Source Files\Methods</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Methods\CustomCursor.cpp">
+      <Filter>Source Files\Methods</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Methods\CustomFont.cpp">
+      <Filter>Source Files\Methods</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Methods\CustomStyle.cpp">
+      <Filter>Source Files\Methods</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Methods\LoadMemory.cpp">
+      <Filter>Source Files\Methods</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Methods\Misc.cpp">
+      <Filter>Source Files\Methods</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Overlay\overlay.cpp">
+      <Filter>Source Files\Overlay</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="header\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Overlay\overlay.hpp">
+      <Filter>Header Files\Overlay</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Logging\logging.hpp">
+      <Filter>Header Files\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Methods\CreateImage.hpp">
+      <Filter>Header Files\Methods</Filter>
+    </ClInclude>
+    <ClInclude Include="header\resources\icons\font_awesome.hpp">
+      <Filter>Header Files\resources\icons</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Menu\menu.hpp">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Menu\Toggles.hpp">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

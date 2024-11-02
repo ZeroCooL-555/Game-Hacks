@@ -1,10 +1,13 @@
 @echo off
 
-:: Set the project name
-SET PROJECT_NAME="Menu-Base"
+:: ====================[ PATH CONFIGURATION ] ====================================
 
-:: Set the root directory (Current Working Directory)
+:: Set the project name
+SET PROJECT_NAME=Menu-Base
+
+:: Set the root directory (Current Working Directory) without trailing backslash
 SET CWD=%~dp0
+IF "%CWD:~-1%"=="\" SET CWD=%CWD:~0,-1%
 
 :: Set the build directory
 SET WORK_DIR=%CWD%\TEMP_WORK
@@ -18,6 +21,20 @@ SET GLEW_SOURCE_DIR=%WORK_DIR%\glew-2.1.0
 SET GLFW_SOURCE_DIR=%WORK_DIR%\glfw-master
 SET GLFW_SOURCE_DIR_BUILD=%GLFW_SOURCE_DIR%\Build
 
+:: Create necessary directories
+IF NOT EXIST "%WORK_DIR%" MKDIR "%WORK_DIR%"
+IF NOT EXIST "%GLFW_SOURCE_DIR_BUILD%" MKDIR "%GLFW_SOURCE_DIR_BUILD%"
+IF NOT EXIST "%LIB_DEST_DIR%" MKDIR "%LIB_DEST_DIR%"
+IF NOT EXIST "%INCLUDE_DEST_DIR%" MKDIR "%INCLUDE_DEST_DIR%"
+
+:: ==================================================================================
+
+
+:: ==============================[ START OF BUILD PROCESS ] ======================================
+
+:: Move into WORK_DIR
+CD %WORK_DIR%
+
 :: Check if CMake is installed
 cmake --version >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 (
@@ -25,87 +42,60 @@ IF %ERRORLEVEL% NEQ 0 (
     EXIT /B
 )
 
-:: Create the WORK_DIR directory if it doesn't exist
-IF NOT EXIST %WORK_DIR% (
-    MKDIR %WORK_DIR%
-)
-
-:: Create the build directory if it doesn't exist
-IF NOT EXIST %GLFW_SOURCE_DIR_BUILD% (
-    MKDIR %GLFW_SOURCE_DIR_BUILD%
-)
-
-:: Create destination directories if they don't exist
- IF NOT EXIST %LIB_DEST_DIR% (
-     MKDIR %LIB_DEST_DIR%
- )
-
- IF NOT EXIST %INCLUDE_DEST_DIR% (
-     MKDIR %INCLUDE_DEST_DIR%
- )
-
-
-
 :: Move into WORK_DIR directory
 CD %WORK_DIR%
 
-:: Download, extract and copy compiled libraries and headers to the projects lib and include directory
+:: Download and extract GLEW
 ECHO "[+] Downloading and extracting GLEW"
-
 curl -L https://sourceforge.net/projects/glew/files/glew/2.1.0/glew-2.1.0-win32.zip/download -o glew-2.1.0-win32.zip
+IF %ERRORLEVEL% NEQ 0 (
+    ECHO "Error downloading GLEW. Check your internet connection."
+    EXIT /B
+)
 tar -xf glew-2.1.0-win32.zip
 
-
-ECHO [+] Copying headers and renaming GLEW libraries...
-
+:: Copy GLEW headers and libraries
+ECHO "[+] Copying GLEW headers and libraries..."
 ECHO F | XCOPY "%GLEW_SOURCE_DIR%\include\GL" "%INCLUDE_DEST_DIR%\GL" /E /I /Y
+ECHO F | XCOPY "%GLEW_SOURCE_DIR%\lib\Release\Win32\glew32s.lib" "%LIB_DEST_DIR%\glew32s_x86.lib" /I /Y
+ECHO F | XCOPY "%GLEW_SOURCE_DIR%\lib\Release\x64\glew32s.lib" "%LIB_DEST_DIR%\glew32s_x64.lib" /I /Y
 
-ECHO F | XCOPY "%GLEW_SOURCE_DIR%\lib\Release\Win32\glew32s.lib" "%LIB_DEST_DIR%\glew32s_x86.lib" /E /I /Y
-ECHO F | XCOPY "%GLEW_SOURCE_DIR%\lib\Release\x64\glew32s.lib" "%LIB_DEST_DIR%\glew32s_x64.lib" /E /I /Y
-
-
-
-
-:: clone, build and copy libraries and headers into the include and lib directories
-ECHO [+] Downloading and extracting GLFW
-
+:: Download and extract GLFW
+ECHO "[+] Downloading and extracting GLFW"
 curl -L https://github.com/glfw/glfw/archive/refs/heads/master.zip -o glfw-master.zip
+IF %ERRORLEVEL% NEQ 0 (
+    ECHO "Error downloading GLFW. Check your internet connection."
+    EXIT /B
+)
 tar -xf glfw-master.zip
 
+:: Build GLFW for Win32
+ECHO "[+] Configuring and building GLFW for Win32"
+cmake -G "Visual Studio 17 2022" -A Win32 -S "%GLFW_SOURCE_DIR%" -B "%GLFW_SOURCE_DIR_BUILD%"
+IF %ERRORLEVEL% NEQ 0 (
+    ECHO "CMake configuration failed for Win32. Check if Visual Studio 17 2022 is installed."
+    EXIT /B
+)
+cmake --build "%GLFW_SOURCE_DIR_BUILD%" --config Debug --target INSTALL
+ECHO F | XCOPY "%GLFW_SOURCE_DIR%\include\GLFW" "%INCLUDE_DEST_DIR%\GLFW" /E /I /Y
+ECHO F | XCOPY "%GLFW_SOURCE_DIR_BUILD%\src\Debug\glfw3.lib" "%LIB_DEST_DIR%\glfw3_x86.lib" /I /Y
 
-:: Run CMake to configure and build the project
-ECHO [+] Configuring and building the project for Win32...
+:: Clean up Win32 build to prepare for x64
+RMDIR /S /Q "%GLFW_SOURCE_DIR_BUILD%"
+MKDIR "%GLFW_SOURCE_DIR_BUILD%"
 
-CD %GLFW_SOURCE_DIR%
+:: Build GLFW for x64
+ECHO "[+] Configuring and building GLFW for x64"
+cmake -G "Visual Studio 17 2022" -A x64 -S "%GLFW_SOURCE_DIR%" -B "%GLFW_SOURCE_DIR_BUILD%"
+IF %ERRORLEVEL% NEQ 0 (
+    ECHO "CMake configuration failed for x64. Check if Visual Studio 17 2022 is installed."
+    EXIT /B
+)
+cmake --build "%GLFW_SOURCE_DIR_BUILD%" --config Debug --target INSTALL
+ECHO F | XCOPY "%GLFW_SOURCE_DIR_BUILD%\src\Debug\glfw3.lib" "%LIB_DEST_DIR%\glfw3_x64.lib" /I /Y
 
-cmake -G "Visual Studio 17 2022" -A Win32 -B %GLFW_SOURCE_DIR_BUILD%
+ECHO "[+] Build process completed successfully."
 
-CD %GLFW_SOURCE_DIR_BUILD%
-cmake --build . --target INSTALL
-
-:: Copy GLFW Win32 library and header files
-ECHO F | XCOPY %GLFW_SOURCE_DIR%\include\GLFW %INCLUDE_DEST_DIR%\GLFW /E /I /Y
-ECHO F | XCOPY %GLFW_SOURCE_DIR_BUILD%\src\Debug\glfw3.lib %LIB_DEST_DIR%\glfw3_x86.lib /E /I /Y
-
-:: Cleanup the configuration for the Win32 build to start x64 build
-CD %GLFW_SOURCE_DIR%
-:: DEL %GLFW_SOURCE_DIR_BUILD%
-RMDIR /S /Q %GLFW_SOURCE_DIR_BUILD%
-MKDIR %GLFW_SOURCE_DIR_BUILD%
-
-
-:: Copy GLFW x64 library
-ECHO [+] Configuring and building the project for x64...
-
-CD %GLFW_SOURCE_DIR%
-cmake -G "Visual Studio 17 2022" -A x64 -B %GLFW_SOURCE_DIR_BUILD%
-
-CD %GLFW_SOURCE_DIR_BUILD%
-cmake --build . --target INSTALL
-
-ECHO F | XCOPY %GLFW_SOURCE_DIR_BUILD%\src\Debug\glfw3.lib %LIB_DEST_DIR%\glfw3_x64.lib /E /I /Y
-
-ECHO [+] Build process completed.
-
+:: Cleanup
 CD %CWD%
-RMDIR /S /Q %WORK_DIR%
+RMDIR /S /Q "%WORK_DIR%"

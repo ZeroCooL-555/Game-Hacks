@@ -41,8 +41,25 @@ void Menu::Render(GLFWwindow* window)
 
 void Menu::ShowMenu(GLFWwindow* window)
 {
+	// Disable mouse passthrough
 	glfwSetWindowAttrib(window, GLFW_MOUSE_PASSTHROUGH, false);
+
+	// Force the cursor to be shown and normal
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+
+	// bring our window to foreground
 	SetForegroundWindow(Overlay::hwnd_Window);
+
+	// Force windows to show the cursor
+	while (ShowCursor(TRUE) < 0);
+
+	// Send mouse event to force mouse update...Works but bad.
+	INPUT input = { 0 };
+	input.type = INPUT_MOUSE;
+	input.mi.dwFlags = MOUSEEVENTF_MOVE;
+	input.mi.dx = 0;
+	input.mi.dy = 0;
+	SendInput(1, &input, sizeof(INPUT));
 }
 
 void Menu::HideMenu(GLFWwindow* window)
